@@ -1,0 +1,120 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css" >
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="Home">
+          <a href="/home">Home</a>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        
+        <form action="/register" method="POST" class="form-horizontal" id="validateForm">
+            <h1>Registration</h1>
+            <fieldset>
+                <!-- Full Name -->
+                <div class="form-group">
+                    <label class="col-md-12 control-label" for="fName">
+                        Full Name
+                    </label>
+                    <div class="col-md-12">
+                        <input id="name" type="name" name="fullName" placeholder="Enter your Full Name" class="form-control input-md">
+                    </div>                    
+                </div>
+                <!-- Age -->
+                <div class="form-group">
+                    <label class="col-md-12 control-label" for="age">
+                        Age
+                    </label>
+                    <div class="col-md-12">
+                        <input id="age" type="." name="age" placeholder="Enter Your Age" class="form-control input-md">
+                    </div>                    
+                </div>
+                <!-- Gender -->
+                <div class="form-group">
+                    <label class="col-md-12 control-label" for="gender">
+                        Gender
+                    </label>
+                    <div class="col-md-12">
+                        <input name = "gender" type="radio" value="male" > Male
+                        <input name = "gender" type="radio" value="female" > Female
+                    </div>                    
+                </div>
+                <!-- Phone Number -->
+                <div class="form-group">
+                    <label class="col-md-12 control-label" for="phone-number">
+                        Phone Number
+                    </label>
+                    <div class="col-md-12">
+                        <input id="phonenumber" name="phoneNumber" type="." placeholder="Enter Your Phone Number" class="form-control input-md">
+                    </div>
+                </div>
+                <!-- Email -->
+                <div class="form-group">
+                    <label class="col-md-12 control-label" for="email">
+                        Email
+                    </label>
+                    <div class="col-md-12">
+                        <input id="email" name="email" type="email" placeholder="Enter your email address" 
+                        class="form-control input-md">
+                    </div>                    
+                </div>
+                <!-- Password -->
+                <div class="form-group">
+                    <label class="col-md-12 control-label" for="password"> Password </label>
+                    <div class="col-md-12">
+                        <input id="password" class="form-control input-md" name="password" type="password" 
+                        placeholder="Enter your password" >
+                        <span class="show-pass" onclick="toggle()">
+                            <i onclick="myFunction(this)"></i>
+                        </span>
+                        <div id="popover-password">
+                            <p><span id="result"></span></p>
+                            <div class="progress">
+                                <div id="password-strength" class="progress-bar" role="progressbar" style="width:0%">
+                                </div>
+                            </div>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <span class="low-upper-case">
+                                        <i class="fas fa-circle" aria-hidden="true">&nbsp;Lowercase &amp; Uppercase</i>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="one-number">
+                                        <i class="fas fa-circle" aria-hidden="true">&nbsp;Number (0-9)</i>
+                                    </span> 
+                                </li>
+                                <li>
+                                    <span class="one-special-char">
+                                        <i class="fas fa-circle" aria-hidden="true">&nbsp;Special Character (!@#$%^&*)</i>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="eight-character">
+                                        <i class="fas fa-circle" aria-hidden="true">&nbsp;Atleast 8 Character</i>
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>                    
+                </div>
+                
+                <!-- Button -->
+                <div class="form-group">
+                    <input type="submit" class="btn login-btn btn-block"  value="Submit"/>
+                </div>
+                <div class="ex-account text-center">
+                    <p>Already have an account? Signin 
+                        <a href="/login">here</a>
+                    </p>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <script src="main.js"></script>
+</body>

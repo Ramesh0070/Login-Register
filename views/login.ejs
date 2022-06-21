@@ -1,0 +1,50 @@
+<head>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" href="/style.css" >
+</head>
+  
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="Home">
+        <a href="/home">Home</a>
+      </div>
+    </header>
+      <div class="container">
+          <form action="/login" method="POST" class="form-horizontal" id="validateForm">
+              <h1>Logins</h1>
+              <fieldset>
+                  <!-- Email input-->
+                  <div class="form-group">
+                      <label class="col-md-12 control-label" for="textinput">
+                          Email
+                      </label>
+                      <div class="col-md-12">
+                          <input id="email" name="textinput" type="email" placeholder="Enter your email address" 
+                          class="form-control input-md">
+                      </div>
+                  </div>                  
+                  <!-- Password input-->
+                  <div class="form-group">
+                      <label class="col-md-12 control-label" for="passwordinput"> Password </label>
+                      <div class="col-md-12">
+                          <input id="password" class="form-control input-md" name="password" type="password" 
+                          placeholder="Enter your password" >
+                          
+                      </div>
+                  </div>
+                  <!-- Button -->                  
+                  <div class="form-group">
+                      <a href="#" class="btn login-btn btn-block"> Log In </a>    
+                  </div>
+                  <div class="ex-account text-center">
+                      <p>Create Your Account? Click 
+                          <a href="/register">here</a>
+                      </p>
+                  </div>
+              </fieldset>
+          </form>   
+      </div>      
+  </body>
+  
+  
