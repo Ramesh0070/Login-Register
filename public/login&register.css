@@ -110,4 +110,5 @@ small{
 .form-group.error small{
     color: #e74c3c;
     visibility: visible;
+    position: relative;
 }

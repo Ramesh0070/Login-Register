@@ -23,9 +23,10 @@ const createUser = async (req, res) => {
         user.password = await bcrypt.hash(password, salt);
         await user.save( );      
         res.send({user : user._id}); 
+
     }catch(err){
         console.log(err)
-        res.send({err})
+        res.render('register', {err});
     }   
 }
 
