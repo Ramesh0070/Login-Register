@@ -16,8 +16,8 @@ const returnLoginPage = (req, res) => {
 
 const createUser = async (req, res) => {
     try{
-        const {fullName, age, gender, phoneNumber, email, password} = req.body;
-        const user = new User({fullName, age, gender, phoneNumber, email, password})
+        const {fullName, age,  phoneNumber, email, password} = req.body;
+        const user = new User({fullName, age, phoneNumber, email, password})
         //generating salt for the password 
         const salt = await bcrypt.genSalt();
         user.password = await bcrypt.hash(password, salt);

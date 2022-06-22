@@ -1,18 +1,11 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/style.css" >
+    <link rel="stylesheet" href="/login&register.css" >
+    <script src="https://kit.fontawesome.com/1c2c2462bf.js" crossorigin="anonymous"></script>
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="Home">
-          <a href="/home">Home</a>
-        </div>
-    </header>
 
+<body>
     <div class="container">
-        
-        
         <form action="/register" method="POST" class="form-horizontal" id="validateForm">
             <h1>Registration</h1>
             <fieldset>
@@ -22,7 +15,8 @@
                         Full Name
                     </label>
                     <div class="col-md-12">
-                        <input id="name" type="name" name="fullName" placeholder="Enter your Full Name" class="form-control input-md">
+                        <input id="fullName" type="name" name="fullName" placeholder="Enter your Full Name" class="form-control input-md">
+                        <small>Error message</small>
                     </div>                    
                 </div>
                 <!-- Age -->
@@ -31,26 +25,18 @@
                         Age
                     </label>
                     <div class="col-md-12">
-                        <input id="age" type="." name="age" placeholder="Enter Your Age" class="form-control input-md">
+                        <input id="age" type="." name="age" placeholder="Enter Your Age" class="form-control input-md">                        
+                        <small>Error message</small>
                     </div>                    
-                </div>
-                <!-- Gender -->
-                <div class="form-group">
-                    <label class="col-md-12 control-label" for="gender">
-                        Gender
-                    </label>
-                    <div class="col-md-12">
-                        <input name = "gender" type="radio" value="male" > Male
-                        <input name = "gender" type="radio" value="female" > Female
-                    </div>                    
-                </div>
+                </div> 
                 <!-- Phone Number -->
                 <div class="form-group">
                     <label class="col-md-12 control-label" for="phone-number">
                         Phone Number
                     </label>
                     <div class="col-md-12">
-                        <input id="phonenumber" name="phoneNumber" type="." placeholder="Enter Your Phone Number" class="form-control input-md">
+                        <input id="phonenumber" name="phoneNumber" type="." placeholder="Enter Your Phone Number" class="form-control input-md">                        
+                        <small>Error message</small>
                     </div>
                 </div>
                 <!-- Email -->
@@ -60,7 +46,8 @@
                     </label>
                     <div class="col-md-12">
                         <input id="email" name="email" type="email" placeholder="Enter your email address" 
-                        class="form-control input-md">
+                        class="form-control input-md">                        
+                        <small>Error message</small>
                     </div>                    
                 </div>
                 <!-- Password -->
@@ -68,7 +55,8 @@
                     <label class="col-md-12 control-label" for="password"> Password </label>
                     <div class="col-md-12">
                         <input id="password" class="form-control input-md" name="password" type="password" 
-                        placeholder="Enter your password" >
+                        placeholder="Enter your password" >                        
+                        <small>Error message</small>
                         <span class="show-pass" onclick="toggle()">
                             <i onclick="myFunction(this)"></i>
                         </span>
@@ -117,4 +105,5 @@
         </form>
     </div>
     <script src="main.js"></script>
+    <script src="../validation/validation.js"></script>
 </body>
