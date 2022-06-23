@@ -2,7 +2,20 @@ const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth')
 const databaseConnection = require('./dbConnection/connection')
+const session = require('express-session');
+const flash = require('connect-flash');
 const app = express();
+
+
+//Session and Flash view
+app.use(session({
+  secret: 'ilikecats',
+  cookie: {},
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(flash());
+
 
 //Middleware 
 app.use(express.urlencoded({extended : false})) // urlencoded - object

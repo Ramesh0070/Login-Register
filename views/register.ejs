@@ -8,15 +8,19 @@
     <div class="container">
         <form action="/register" method="POST" class="form-horizontal" id="validateForm">
             <h1>Registration</h1>
+
+            
             <fieldset>
+                
                 <!-- Full Name -->
                 <div class="form-group">
                     <label class="col-md-12 control-label" for="fName">
                         Full Name
                     </label>
                     <div class="col-md-12">
-                        <input id="fullName" type="name" name="fullName" placeholder="Enter your Full Name" class="form-control input-md">
-                        <small><Error message></small>
+                        <input id="fullName" type="name" name="fullName" placeholder="Enter your Full Name" 
+                        class="form-control input-md" value="<%= typeof fullName != 'undefined' ? fullName: '' %>">
+                        
                     </div>                    
                 </div>
                 <!-- Age -->
@@ -25,18 +29,20 @@
                         Age
                     </label>
                     <div class="col-md-12">
-                        <input id="age" type="." name="age" placeholder="Enter Your Age" class="form-control input-md">                        
-                        <small>Error message</small>
+                        <input id="age" type="." name="age" placeholder="Enter Your Age" class="form-control input-md"
+                        value="<%= typeof age != 'undefined' ? age : '' %>">                        
+                        
                     </div>                    
                 </div> 
                 <!-- Phone Number -->
                 <div class="form-group">
-                    <label class="col-md-12 control-label" for="phone-number">
+                    <label class="col-md-12 control-label" for="phonenumber">
                         Phone Number
                     </label>
                     <div class="col-md-12">
-                        <input id="phoneNumber" name="phoneNumber" type="." placeholder="Enter Your Phone Number" class="form-control input-md">                        
-                        <small>Error message</small>
+                        <input id="phoneNumber" name="phoneNumber" type="." placeholder="Enter Your Phone Number" 
+                        class="form-control input-md" value="<%= typeof phoneNumber != 'undefined' ? phoneNumber : '' %>">                        
+                        
                     </div>
                 </div>
                 <!-- Email -->
@@ -46,8 +52,8 @@
                     </label>
                     <div class="col-md-12">
                         <input id="email" name="email" type="email" placeholder="Enter your email address" 
-                        class="form-control input-md">                        
-                        <small>Error message</small>
+                        class="form-control input-md" value="<%= typeof email != 'undefined' ? email : '' %>">                        
+                        
                     </div>                    
                 </div>
                 <!-- Password -->
@@ -55,8 +61,8 @@
                     <label class="col-md-12 control-label" for="password"> Password </label>
                     <div class="col-md-12">
                         <input id="password" class="form-control input-md" name="password" type="password" 
-                        placeholder="Enter your password" >                        
-                        <small>Error message</small>
+                        placeholder="Enter your password"  value="<%= typeof password != 'undefined' ? password : '' %>">                        
+                        
                         <span class="show-pass" onclick="toggle()">
                             <i onclick="myFunction(this)"></i>
                         </span>
