@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const e = require('connect-flash');
+const passport = require('passport');
 
 
 const returnHomePage = (req, res) =>{
@@ -77,11 +78,39 @@ const createUser = async (req, res) => {
 }
 
 const loginUser = (req, res) =>{
-    //code
+    try{
+        const {email, password} = req.body;
+        //match email
+        User.findOne({email: email}).then( user => {
+            if(!email) {
+                return (null, false, {message : 'Email Does not match'});
+            }
+
+            //match password
+            bcrypt.compare(password, user.password, (err, isMatch) => {
+                if(er) throw err;
+                if(isMatch){
+                    return done(null, user);
+                }
+                else{
+                    return(null, false, {message: 'Password Incorrect'});
+                }
+            })
+        })
+        passport.authenticate('local', {
+            successRedirect : 'dashboard',
+            failureRedirect: 'login',
+            failureFlash : true
+        })
+    }catch(err){
+        console.log(err)
+    }
 }
 
 const logoutUser = (req,res) =>{
-    //code
+    req.logout();
+    req.flash('success_msg', 'You are logged out');
+    res.redirect('/login');
 }
 
 module.exports = {
