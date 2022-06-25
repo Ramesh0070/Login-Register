@@ -3,13 +3,39 @@ const bcrypt = require('bcrypt');
 const e = require('connect-flash');
 const passport = require('passport');
 
+const handleErrors = (err) => {
+    let errors = {fullName: '', age: '', phoneNumber: '', email : '', password: ''};
+    console.log(err.message, err.code)
+    console.log(err.message.includes('phoneNumber'))
+
+    //duplicate error
+    if(err.code === 11000){
+        if(err.message.includes('phoneNumber')) {
+            errors.phoneNumber = "Phone number already exists"
+        }
+        if(err.message.includes('email')) {
+            errors.email = "Email already exists"
+        }
+        return errors
+    }
+    //validation error
+    if(err.message.includes('User validation failed')){
+        Object.values(err.errors).forEach(({properties}) => {
+            errors[properties.path] = properties.message
+        })
+    }
+    return errors
+}
+
+
 
 const returnHomePage = (req, res) =>{
     res.render('home');
 }
 
 const returnSignupPage = (req, res) => {
-    res.render('register');
+    const errors = {};
+    res.render('register', {errors});
 }
 
 const returnLoginPage = (req, res) => {
@@ -19,61 +45,18 @@ const returnLoginPage = (req, res) => {
 const createUser = async (req, res) => {
     try{
         const {fullName, age,  phoneNumber, email, password} = req.body;
-
-        const handleErrors = (err) => {
-
-                if (!fullName  || age  || phoneNumber  || email || password){
-                    err.push({msg: 'Please enter all fields.'})
-                }
-
-                if(password.length < 8 ){
-                    err.push(({msg: 'Password must be at least of 8 characters. '}))
-                }
-                
-                if(err.length > 0){
-                    res.render('register',{
-                        err,
-                        fullName,
-                        age,
-                        phoneNumber,
-                        email,
-                        password
-                    })
-                }
-                
-                //duplicate errors 
-                if(err.email === 11000){
-                    err.email = "Email is already in use.."
-                    return errors;
-                }
-
-                if(err.phoneNumber === 11000){
-                    err.phoneNumber = "Phone Number is already in use.."
-                    return errors;
-                }
-
-                //validation error
-                if(err.message.includes('User validation failed')){
-                    Object.values(err.errors).forEach(({properties}) => {
-                        errors[properties.path] = properties.message
-                })
-            }
-            
-        }
-        handleErrors();
         const user = new User({fullName, age, phoneNumber, email, password})
-        //generating salt for the password 
-        const salt = await bcrypt.genSalt();
-        user.password = await bcrypt.hash(password, salt);
         await user.save( );      
         res.send({user : user._id});
-        req.flash('success_msg', 'Successsfully Registered');
-        res.redirect('/login') 
+        // req.flash('success_msg', 'Successsfully Registered');
+        // res.redirect('/login') 
 
     }catch(err){
-        console.log(err)
-        res.flash('err', 'error_msg')
-        res.render('register', {err});
+        const {fullName, age,  phoneNumber, email, password} = req.body;
+        const errors = handleErrors(err);
+        console.log(errors)
+        // res.flash('err', 'error_msg')
+        res.render('register', {errors, fullName, age,  phoneNumber, email, password});
     }   
 }
 

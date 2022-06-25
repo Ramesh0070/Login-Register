@@ -7,6 +7,8 @@ let specialChar = document.querySelector(".one-special-char i");
 let eightChar = document.querySelector(".eight-character i");
 
 
+
+
 // for password complexity
 
 password.addEventListener("keyup", function(){
