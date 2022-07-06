@@ -5,7 +5,7 @@
 
 <body>
     <div class="container">
-        <form action="/login" method="POST" class="form-horizontal" id="validateForm">
+        <form action="/login" class="form-horizontal" id="validateForm">
             <h1>Login Form</h1>
             <fieldset>
                 <!-- Email input-->
@@ -51,4 +51,27 @@
             </fieldset>
         </form>
     </div>
+    <script>
+        const form = document.querySelector('#validateForm');
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const email = form.email.value;
+          const password = form.password.value;
+          try {
+            const res = await fetch('/login', { 
+              method: 'POST', 
+              body: JSON.stringify({ email, password }),
+              headers: {'Content-Type': 'application/json'}
+            });
+            const data = await res.json();
+            console.log(data.msg === "Login Successful")
+            if (data.msg === "Login Successful") {
+              location.assign('/');
+            }
+          }
+          catch (err) {
+            console.log(err);
+          }
+        });
+      </script>
 </body>

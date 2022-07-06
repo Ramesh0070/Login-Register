@@ -1,142 +1,215 @@
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/login&register.css">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script src="https://kit.fontawesome.com/1c2c2462bf.js" crossorigin="anonymous"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"
+  />
+  <link rel="stylesheet" href="/login&register.css" />
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script
+    src="https://kit.fontawesome.com/1c2c2462bf.js"
+    crossorigin="anonymous"
+  ></script>
 </head>
 
 <body>
-    <div class="container">
-        <form action="/register" method="POST" class="form-horizontal" id="validateForm">
-            <h1>Registration</h1>
-            <fieldset>
-                <!-- Full Name -->
-                <div class="form-group">
-                    <label class="col-md-12 control-label" for="fName">
-                        Full Name
-                    </label>
-                    <div class="col-md-12">
-                        <input id="fullName" type="name" name="fullName" placeholder="Enter your Full Name"
-                            class="form-control input-md" value="<%= typeof fullName !== 'undefined' ? fullName: '' %>">
-                        <% if (errors.fullName !=="" ) { %>
-                            <span style="color:red">
-                                <%= errors.fullName %>
-                            </span>
-                            <% } %>
-                    </div>
-                </div>
-                <!-- Age -->
-                <div class="form-group">
-                    <label class="col-md-12 control-label" for="age">
-                        Age
-                    </label>
-                    <div class="col-md-12">
-                        <input id="age" type="." name="age" placeholder="Enter Your Age" class="form-control input-md"
-                            value="<%= typeof age != 'undefined' ? age : '' %>">
-                        <% if (errors.age !=="" ) { %>
-                            <span style="color:red">
-                                <%= errors.age %>
-                            </span>
-                            <% } %>
-                    </div>
-                </div>
-                <!-- Phone Number -->
-                <div class="form-group">
-                    <label class="col-md-12 control-label" for="phonenumber">
-                        Phone Number
-                    </label>
-                    <div class="col-md-12">
-                        <input id="phoneNumber" name="phoneNumber" type="." placeholder="Enter Your Phone Number"
-                            class="form-control input-md"
-                            value="<%= typeof phoneNumber != 'undefined' ? phoneNumber : '' %>">
-                        <% if (errors.phoneNumber !=="" ) { %>
-                            <span style="color:red">
-                                <%= errors.phoneNumber %>
-                            </span>
-                            <% } %>
-                    </div>
-                </div>
-                <!-- Email -->
-                <div class="form-group">
-                    <label class="col-md-12 control-label" for="email">
-                        Email
-                    </label>
-                    <div class="col-md-12">
-                        <input id="email" name="email" type="email" placeholder="Enter your email address"
-                            class="form-control input-md" value="<%= typeof email != 'undefined' ? email : '' %>">
-                        <% if (errors.email !=="" ) { %>
-                            <span style="color:red">
-                                <%= errors.email %>
-                            </span>
-                            <% } %>
-                    </div>
-                </div>
-                <!-- Password -->
-                <div class="form-group">
-                    <label class="col-md-12 control-label" for="password"> Password </label>
-                    <div class="col-md-12">
-                        <input id="password" class="form-control input-md" name="password" type="password"
-                            placeholder="Enter your password"
-                            value="<%= typeof password != 'undefined' ? password : '' %>">
-                        <% if (errors.password !=="" ) { %>
-                            <span style="color:red">
-                                <%= errors.password %>
-                            </span>
-                            <% } %>
-                                <span class="show-pass" onclick="toggle()">
-                                    <i onclick="myFunction(this)"></i>
-                                </span>
-                                <div id="popover-password">
-                                    <p><span id="result"></span></p>
-                                    <div class="progress">
-                                        <div id="password-strength" class="progress-bar" role="progressbar"
-                                            style="width:0%">
-                                        </div>
-                                    </div>
-                                    <ul class="list-unstyled">
-                                        <li>
-                                            <span class="low-upper-case">
-                                                <i class="fas fa-circle" aria-hidden="true">&nbsp;Lowercase &amp;
-                                                    Uppercase</i>
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span class="one-number">
-                                                <i class="fas fa-circle" aria-hidden="true">&nbsp;Number (0-9)</i>
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span class="one-special-char">
-                                                <i class="fas fa-circle" aria-hidden="true">&nbsp;Special Character
-                                                    (!@#$%^&*)</i>
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span class="eight-character">
-                                                <i class="fas fa-circle" aria-hidden="true">&nbsp;Atleast 8
-                                                    Character</i>
-                                            </span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="form-group">
-                                    <div class="g-recaptcha" data-sitekey="6LcRaJUgAAAAAIOuMf1bl2nXRWea8l5HoOCIHS87">
-                                    </div>
-                                </div>
-                    </div>
-                </div>
+  <div class="container">
+    <form
+      action="/register"
+      method="POST"
+      class="form-horizontal"
+      id="validateForm"
+    >
+      <h1>Registration</h1>
+      <fieldset>
+        <!-- Full Name -->
+        <div class="form-group">
+          <label class="col-md-12 control-label" for="fName"> Full Name </label>
+          <div class="col-md-12">
+            <input
+              id="fullName"
+              type="name"
+              name="fullName"
+              placeholder="Enter your Full Name"
+              class="form-control input-md"
+              value="<%= typeof fullName !== 'undefined' ? fullName: '' %>"
+            />
+            <% if (errors.fullName !=="" ) { %>
+            <span style="color: red"> <%= errors.fullName %> </span>
+            <% } %>
+          </div>
+        </div>
+        <!-- Age -->
+        <div class="form-group">
+          <label class="col-md-12 control-label" for="age"> Age </label>
+          <div class="col-md-12">
+            <input
+              id="age"
+              type="."
+              name="age"
+              placeholder="Enter Your Age"
+              class="form-control input-md"
+              value="<%= typeof age != 'undefined' ? age : '' %>"
+            />
+            <% if (errors.age !=="" ) { %>
+            <span style="color: red"> <%= errors.age %> </span>
+            <% } %>
+          </div>
+        </div>
+        <!-- Phone Number -->
+        <div class="form-group">
+          <label class="col-md-12 control-label" for="phonenumber">
+            Phone Number
+          </label>
+          <div class="col-md-12">
+            <input
+              id="phoneNumber"
+              name="phoneNumber"
+              type="."
+              placeholder="Enter Your Phone Number"
+              class="form-control input-md"
+              value="<%= typeof phoneNumber != 'undefined' ? phoneNumber : '' %>"
+            />
+            <% if (errors.phoneNumber !=="" ) { %>
+            <span style="color: red"> <%= errors.phoneNumber %> </span>
+            <% } %>
+          </div>
+        </div>
+        <!-- Email -->
+        <div class="form-group">
+          <label class="col-md-12 control-label" for="email"> Email </label>
+          <div class="col-md-12">
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="Enter your email address"
+              class="form-control input-md"
+              value="<%= typeof email != 'undefined' ? email : '' %>"
+            />
+            <% if (errors.email !=="" ) { %>
+            <span style="color: red"> <%= errors.email %> </span>
+            <% } %>
+          </div>
+        </div>
+        <!-- Password -->
+        <div class="form-group">
+          <label class="col-md-12 control-label" for="password">
+            Password
+          </label>
+          <div class="col-md-12">
+            <input
+              id="password"
+              class="form-control input-md"
+              name="password"
+              type="password"
+              placeholder="Enter your password"
+              value="<%= typeof password != 'undefined' ? password : '' %>"
+            />
+            <% if (errors.password !=="" ) { %>
+            <span style="color: red"> <%= errors.password %> </span>
+            <% } %>
+            <span class="show-pass" onclick="toggle()">
+              <i onclick="myFunction(this)"></i>
+            </span>
+            <div id="popover-password">
+              <p><span id="result"></span></p>
+              <div class="progress">
+                <div
+                  id="password-strength"
+                  class="progress-bar"
+                  role="progressbar"
+                  style="width: 0%"
+                ></div>
+              </div>
+              <ul class="list-unstyled">
+                <li>
+                  <span class="low-upper-case">
+                    <i class="fas fa-circle" aria-hidden="true"
+                      >&nbsp;Lowercase &amp; Uppercase</i
+                    >
+                  </span>
+                </li>
+                <li>
+                  <span class="one-number">
+                    <i class="fas fa-circle" aria-hidden="true"
+                      >&nbsp;Number (0-9)</i
+                    >
+                  </span>
+                </li>
+                <li>
+                  <span class="one-special-char">
+                    <i class="fas fa-circle" aria-hidden="true"
+                      >&nbsp;Special Character (!@#$%^&*)</i
+                    >
+                  </span>
+                </li>
+                <li>
+                  <span class="eight-character">
+                    <i class="fas fa-circle" aria-hidden="true"
+                      >&nbsp;Atleast 8 Character</i
+                    >
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div class="form-group">
+              <div
+                class="g-recaptcha"
+                data-callback="recaptchaCallback"
+                data-sitekey="6LcRaJUgAAAAAIOuMf1bl2nXRWea8l5HoOCIHS87"
+              ></div>
+            </div>
+          </div>
+        </div>
 
-                <!-- Button -->
-                <div class="form-group">
-                    <input type="submit" class="btn login-btn btn-block" value="Submit" />
-                </div>
-                <div class="ex-account text-center">
-                    <p>Already have an account? Signin
-                        <a href="/login">here</a>
-                    </p>
-                </div>
-            </fieldset>
-        </form>
-    </div>
-    <script src="main.js"></script>
+        <!-- Button -->
+        <div class="form-group">
+          <input
+            id="submit"
+            type="submit"
+            class="btn login-btn btn-block"
+            value="Submit"
+            disabled
+          />
+        </div>
+        <div class="ex-account text-center">
+          <p>
+            Already have an account? Signin
+            <a href="/login">here</a>
+          </p>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <script src="main.js"></script>
+  <script>
+    function recaptchaCallback() {
+      return new Promise(function (resolve, reject) {
+        document.querySelector("#submit").removeAttribute('disabled')
+        resolve();
+      }); //end promise
+    }
+    const form = document.querySelector("#validateForm");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const fullName = form.fullName.value;
+      const age = form.age.value;
+      const phoneNumber = form.phoneNumber.value;
+      const email = form.email.value;
+      const password = form.password.value;
+      try {
+        const res = await fetch("/register", {
+          method: "POST",
+          body: JSON.stringify({ fullName, age, phoneNumber, email, password }),
+          headers: { "Content-Type": "application/json" },
+        });
+        const data = await res.json();
+        if (data.user) {
+          location.assign("/");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    });
+  </script>
 </body>

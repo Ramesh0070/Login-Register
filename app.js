@@ -7,6 +7,8 @@ const passport = require('passport')
 const session = require('express-session');
 const flash = require('connect-flash');
 const app = express();
+const cookieParser = require("cookie-parser");
+
 
 
 //Session and Flash view
@@ -17,6 +19,8 @@ app.use(session({
   saveUninitialized: true
 }));
 app.use(flash());
+app.use(cookieParser());
+
 
 
 //Middleware 
@@ -35,7 +39,10 @@ app.use(express.static(__dirname + '/public')); //load client index file.
 app.set('view engine', 'ejs');
 
 //routes
-app.get('/', (req, res) => res.render('home'));
+app.get('/', (req, res) => {
+  console.log(req.cookies)
+  res.render('home', {jwt : req.cookies.jwt})
+});
 app.use(authRoutes)
 
 

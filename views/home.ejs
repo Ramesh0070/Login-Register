@@ -17,6 +17,7 @@
         <div class="Home">
           <a href="/home">Home</a>
         </div>
+        <% if (jwt === undefined ) { %>
         <ul class="homeul">       
           <li class="homeli">
             <a href="/login" class="hover_link">Login</a>
@@ -25,6 +26,14 @@
             <a href="/register" class="hover_link">Register</a>
           </li>
         </ul>
+        <% } else { %>
+          <ul class="homeul">       
+            <li class="homeli">
+              <a href="/logout" class="hover_link">Logout</a>
+            </li>
+          </ul>
+          <% } %>
+
       </nav>
     </div>
 
