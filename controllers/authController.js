@@ -73,7 +73,8 @@ const loginUser = (req, res) =>{
             bcrypt.compare(password, user.password, (err, isMatch) => {
                 if(er) throw err;
                 if(isMatch){
-                    return done(null, user);
+                    res.render('dashboard')
+                    // return done(null, user);
                 }
                 else{
                     return(null, false, {message: 'Password Incorrect'});
