@@ -102,7 +102,6 @@ const loginUser = async (req, res) => {
             else {
                 return res.status(401).json({ msg: "Invalid Credentials " })
             }
-<<<<<<< HEAD
 
             //match password
             bcrypt.compare(password, user.password, (err, isMatch) => {
@@ -120,8 +119,6 @@ const loginUser = async (req, res) => {
             successRedirect : 'dashboard',
             failureRedirect: 'login',
             failureFlash : true
-=======
->>>>>>> e709313ec4b429b3f3083533438c611d2f870e81
         })
     } catch (error) {
         if (!findUser) {
