@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth')
 const databaseConnection = require('./dbConnection/connection')
+const bodyParser = require('body-parser')
 const passport = require('passport')
 const session = require('express-session');
 const flash = require('connect-flash');
@@ -19,8 +20,8 @@ app.use(flash());
 
 
 //Middleware 
-app.use(express.urlencoded({extended : false})) // urlencoded - object
-app.use(express.json());
+app.use(bodyParser.urlencoded({extended : false})) // urlencoded - object
+app.use(bodyParser.json());
 
 //password Middleware
 app.use(passport.initialize())
