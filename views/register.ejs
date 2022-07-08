@@ -33,9 +33,7 @@
               class="form-control input-md"
               value="<%= typeof fullName !== 'undefined' ? fullName: '' %>"
             />
-            <% if (errors.fullName !=="" ) { %>
-            <span style="color: red"> <%= errors.fullName %> </span>
-            <% } %>
+            <span class="fullName error" style="color: red"></span>
           </div>
         </div>
         <!-- Age -->
@@ -50,9 +48,8 @@
               class="form-control input-md"
               value="<%= typeof age != 'undefined' ? age : '' %>"
             />
-            <% if (errors.age !=="" ) { %>
-            <span style="color: red"> <%= errors.age %> </span>
-            <% } %>
+            <span class="age error" style="color: red"></span>
+
           </div>
         </div>
         <!-- Phone Number -->
@@ -69,9 +66,8 @@
               class="form-control input-md"
               value="<%= typeof phoneNumber != 'undefined' ? phoneNumber : '' %>"
             />
-            <% if (errors.phoneNumber !=="" ) { %>
-            <span style="color: red"> <%= errors.phoneNumber %> </span>
-            <% } %>
+            <span class="phoneNumber error" style="color: red"></span>
+
           </div>
         </div>
         <!-- Email -->
@@ -86,9 +82,8 @@
               class="form-control input-md"
               value="<%= typeof email != 'undefined' ? email : '' %>"
             />
-            <% if (errors.email !=="" ) { %>
-            <span style="color: red"> <%= errors.email %> </span>
-            <% } %>
+            <span class="email error" style="color: red"></span>
+
           </div>
         </div>
         <!-- Password -->
@@ -105,9 +100,8 @@
               placeholder="Enter your password"
               value="<%= typeof password != 'undefined' ? password : '' %>"
             />
-            <% if (errors.password !=="" ) { %>
-            <span style="color: red"> <%= errors.password %> </span>
-            <% } %>
+            <span class="password error" style="color: red"></span>
+
             <span class="show-pass" onclick="toggle()">
               <i onclick="myFunction(this)"></i>
             </span>
@@ -190,8 +184,21 @@
       }); //end promise
     }
     const form = document.querySelector("#validateForm");
+    const fullNameError = document.querySelector('.fullName.error');
+    const ageError = document.querySelector('.age.error');
+    const phoneNumberError = document.querySelector('.phoneNumber.error');
+    const emailError = document.querySelector('.email.error');
+    const passwordError = document.querySelector('.password.error');
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+      // reset errors
+      fullNameError.textContent = '';
+      ageError.textContent = '';
+      phoneNumberError.textContent = '';
+    emailError.textContent = '';
+    passwordError.textContent = '';
+
+
       const fullName = form.fullName.value;
       const age = form.age.value;
       const phoneNumber = form.phoneNumber.value;
@@ -207,6 +214,13 @@
         if (data.user) {
           location.assign("/");
         }
+        if (data.errors) {
+          fullNameError.textContent = data.errors.fullName;
+          ageError.textContent = data.errors.age;
+          phoneNumberError.textContent = data.errors.phoneNumber;
+          emailError.textContent = data.errors.email;
+          passwordError.textContent = data.errors.password;
+      }
       } catch (err) {
         console.log(err);
       }

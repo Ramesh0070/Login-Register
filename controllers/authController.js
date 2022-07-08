@@ -98,14 +98,7 @@ const createUser = async (req, res) => {
     const { fullName, age, phoneNumber, email, password } = req.body;
     const errors = handleErrors(err);
     console.log(errors);
-    res.render("register", {
-      errors,
-      fullName,
-      age,
-      phoneNumber,
-      email,
-      password,
-    });
+    res.json({errors})
   }
 };
 
@@ -150,13 +143,16 @@ const loginUser = async (req, res) => {
       failureRedirect: "login",
       failureFlash: true,
     });
-  } catch (error) {
-    if (!findUser) {
-      errors.email = "Email did not match.";
-    }
-    if (!passwordCompare) {
-      errors.password = "Password did not match.";
-    }
+  } catch (err) {
+    const errors = handleErrors(err);
+    console.log(errors);
+    res.json({errors})
+    // if (!findUser) {
+    //   errors.email = "Email did not match.";
+    // }
+    // if (!passwordCompare) {
+    //   errors.password = "Password did not match.";
+    // }
   }
 };
 
