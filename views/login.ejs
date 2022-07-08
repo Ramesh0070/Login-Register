@@ -14,13 +14,9 @@
                         Email
                     </label>
                     <div class="col-md-12">
-                        <input id="email" name="email" type="text" placeholder="Enter your email address"
+                        <input id="email" name="email" type="text" placeholder="Enter your email address" required
                             class="form-control input-md" value="<%= typeof email != 'undefined' ? email : '' %>">
-                        <% if (errors.email !=="" ) { %>
-                            <span style="color:red">
-                                <%= errors.email %>
-                            </span>
-                            <% } %>
+
                     </div>
 
                 </div>
@@ -29,13 +25,10 @@
                     <label class="col-md-12 control-label" for="passwordinput"> Password </label>
                     <div class="col-md-12">
                         <input id="password" class="form-control input-md" name="password" type="password"
-                            placeholder="Enter your password"
+                            placeholder="Enter your password" required
                             value="<%= typeof password != 'undefined' ? password : '' %>">
-                        <% if (errors.password !=="" ) { %>
-                            <span style="color:red">
-                                <%= errors.password %>
-                            </span>
-                            <% } %>
+                            <span class="error" style="color: red"></span>
+
                     </div>
 
                 </div>
@@ -53,8 +46,12 @@
     </div>
     <script>
         const form = document.querySelector('#validateForm');
+
+    const error = document.querySelector('.error');
         form.addEventListener('submit', async (e) => {
           e.preventDefault();
+          error.textContent = '';
+
           const email = form.email.value;
           const password = form.password.value;
           try {
@@ -65,9 +62,13 @@
             });
             const data = await res.json();
             console.log(data.msg === "Login Successful")
-            if (data.msg === "Login Successful") {
+            if (data.user) {
               location.assign('/');
             }
+            if (data.errors) {
+                error.textContent = data.errors.msg;
+      }
+
           }
           catch (err) {
             console.log(err);

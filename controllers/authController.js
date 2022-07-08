@@ -104,7 +104,6 @@ const createUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
   try {
-    console.log(req.body);
     const email = req.body.email;
     const password = req.body.password;
     //find user
@@ -120,10 +119,8 @@ const loginUser = async (req, res) => {
           });
           // res.setHeader('Set-Cookie', `jwt=${token}`)
           res.cookie("jwt", token, { maxAge: 24 * 60 * 60 * 1000 });
-          return res.status(200).json({ msg: "Login Successful" });
-        } else {
-          return res.status(401).json({ msg: "Invalid Credentials " });
-        }
+          return res.status(200).json({ user: user._id });
+        } 
 
         //match password
         // bcrypt.compare(password, user.password, (err, isMatch) => {
@@ -137,6 +134,8 @@ const loginUser = async (req, res) => {
         //     }
         // })
       });
+    }else {
+      return res.status(401).json({ errors: {msg : "Either your email or password is incorrect"} });
     }
     passport.authenticate("local", {
       successRedirect: "dashboard",
